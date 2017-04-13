@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="stopBtn">#8c9e8c</color>
+    <color name="startBtn">#12e612</color>
+    <color name="stopRush">#08a7e6</color>
+
+</resources>

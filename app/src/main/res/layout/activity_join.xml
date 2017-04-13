@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#fff"
+    tools:context="com.example.wkj_pc.rushtoanswer.activity.JoinActivity">
+    <de.hdodenhof.circleimageview.CircleImageView
+       android:layout_width="200dp"
+        android:id="@+id/image_avatar"
+        android:layout_height="200dp"
+        android:src="@drawable/head_img"
+        android:paddingBottom="15dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <EditText
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/nick_name"
+            android:textSize="24sp"
+            android:hint="昵称"
+            android:background="#e7e1e1"
+            />
+        <Spinner
+            android:layout_below="@+id/nick_name"
+            android:layout_width="100dp"
+            android:background="#a9c6cf"
+            android:layout_height="32dp"
+            android:layout_marginTop="8dp"
+            android:id="@+id/spinner"
+           >
+        </Spinner>
+        <Button
+            android:layout_below="@+id/nick_name"
+            android:layout_alignRight="@+id/nick_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/join_rush_img"
+            android:id="@+id/jointorush_btn"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>
