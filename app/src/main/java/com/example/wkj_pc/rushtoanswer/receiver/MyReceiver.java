@@ -1,12 +1,17 @@
 package com.example.wkj_pc.rushtoanswer.receiver;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.media.audiofx.BassBoost;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.Vibrator;
+import android.provider.Settings;
+import android.view.WindowManager;
 
 import com.example.wkj_pc.rushtoanswer.R;
 import com.example.wkj_pc.rushtoanswer.activity.JoinRushActivity;
@@ -21,6 +26,34 @@ public class MyReceiver extends BroadcastReceiver {
         Bundle bundle = intent.getExtras();
         String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
         String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
+        /*
+        * 当接收到随机提问命令后
+        * 弹出对话框，通知回答问题
+        * */
+        if (null!= message && message.contains("random")){
+            String content = message.substring(7);
+            AlertDialog alertDialog=new AlertDialog.Builder(context)
+                .setCancelable(true)
+                    .setIcon(R.mipmap.ic_head)
+                    .setMessage("请 "+content+" 回答问题！")
+                    .setPositiveButton("确定",null)
+                    .setTitle("提问")
+                    .create();
+            if (Build.VERSION.SDK_INT>=23){
+                if (!Settings.canDrawOverlays(context)){
+                    Intent intent1=new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                    //JoinRushActivity.instance.startActivityForResult(intent1,1);
+                    return;
+                }else{
+                    alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+                    alertDialog.show();
+                }
+            }else{
+                alertDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
+                alertDialog.show();
+            }
+
+        }
         /*
         * 参与者接收到创建的活动
         * */

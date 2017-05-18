@@ -31,6 +31,4 @@
             android:src="@drawable/join_rush_img"
             />
     </LinearLayout>
-
-
 </LinearLayout>

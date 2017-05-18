@@ -37,6 +37,8 @@ public class LaunchRushActivity extends AppCompatActivity {
     public static Button startLaunchBtn;
     @BindView(R.id.start_rush_btn)
     Button startRushBtn;
+    @BindView(R.id.random_quiz_btn)
+    Button randomQuiz;
     @BindView(R.id.order_listview)
     ListView orderListview;         //结果展示链表
     public static Activity instance;
@@ -104,6 +106,23 @@ public class LaunchRushActivity extends AppCompatActivity {
     * 初始化按钮，随着抢答更新文字和图片，以及发送命令
     * */
     private void initListener() {
+        randomQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OrderService.launchMessage.setIntention(6);     //intenttion==6 代表随机提问
+
+                NetWorkUtils.getNetWorkUtils().sendOrderToServer("order",
+                        GsonUtils.getGson().toJson(OrderService.launchMessage),url,new okhttp3.Callback(){
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                    }
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+
+                    }
+                });
+            }
+        });
         startRushBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

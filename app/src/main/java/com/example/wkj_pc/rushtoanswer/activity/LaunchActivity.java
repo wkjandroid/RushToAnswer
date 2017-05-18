@@ -15,6 +15,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
+
 import com.example.wkj_pc.rushtoanswer.R;
 import com.example.wkj_pc.rushtoanswer.po.OrderMessage;
 import com.example.wkj_pc.rushtoanswer.service.OrderService;
@@ -33,20 +35,24 @@ import okhttp3.Call;
 import okhttp3.Response;
 public class LaunchActivity extends AppCompatActivity {
 
+    @BindView(R.id.rush_method)
+    Spinner rushMethod;
     @BindView(R.id.team_name)
     EditText teamName;
     @BindView(R.id.create_btn)
     Button createBtn;
-    private String url = "http://119.29.154.229/RushToAnswer/OrderServlet";
+    String method;
+    private String url = null;
     private String tag=null;
     private Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
             switch(msg.what){
                 case 1:
-                    AlertDialog alertDialog = new AlertDialog.Builder(getApplicationContext()).setCancelable(true).setTitle("提醒")
+                  /*  AlertDialog alertDialog = new AlertDialog.Builder(getApplicationContext()).setCancelable(true).setTitle("提醒")
                             .setMessage("服务器繁忙...").create();
-                    alertDialog.show();
+                    alertDialog.show();*/
+                    Toast.makeText(LaunchActivity.this, "服务器繁忙...", Toast.LENGTH_SHORT).show();
                     break;
                 case 2:
                     teamName.setError("该组已被创建...");
@@ -59,9 +65,25 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
         ButterKnife.bind(this);
+        url=getString(R.string.request_url);
+
+        method=getResources().getStringArray(R.array.rush_method)[0];
         initListener();
     }
     private void initListener() {
+
+        rushMethod.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                method=getResources().getStringArray(R.array.rush_method)[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+
+        });
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,9 +108,12 @@ public class LaunchActivity extends AppCompatActivity {
                     OrderMessage message=new OrderMessage(tag,0,null);
                     message.setIntention(1);    //1代表创建 2代表加入
                     message.setTag(tag);        //代表创建哪个组
+                    message.setRushMethod(method);
                     /*访问服务器，创建自己的或送*/
-                    NetWorkUtils.getNetWorkUtils().sendOrderToServer("order", GsonUtils.getGson().toJson(message),
-                            url,new okhttp3.Callback(){
+                    String sendStr = GsonUtils.getGson().toJson(message);
+
+                    NetWorkUtils.getNetWorkUtils().sendOrderToServer("order",
+                            sendStr,url,new okhttp3.Callback(){
                                 @Override
                                 public void onFailure(Call call, IOException e) {
                                     Message message=new Message ();

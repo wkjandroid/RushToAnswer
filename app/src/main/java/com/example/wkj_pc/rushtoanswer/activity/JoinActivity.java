@@ -246,6 +246,7 @@ public class JoinActivity extends AppCompatActivity {
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.menu_item, menu);
         return true;
     }

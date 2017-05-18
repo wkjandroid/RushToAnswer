@@ -2,12 +2,17 @@ package com.example.wkj_pc.rushtoanswer.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import com.example.wkj_pc.rushtoanswer.OrderAdapter;
 import com.example.wkj_pc.rushtoanswer.R;
 import com.example.wkj_pc.rushtoanswer.po.OrderMessage;
@@ -114,5 +119,16 @@ public class JoinRushActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==1){
+            if (Build.VERSION.SDK_INT>=23 &&!Settings.canDrawOverlays(this)){
+                Toast.makeText(this,"not granted",Toast.LENGTH_SHORT);
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RushToAnswer</string>
+    <string name="request_url">http://119.29.154.229/RushToAnswer/OrderServlet</string>
 </resources>

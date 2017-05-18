@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.wkj_pc.rushtoanswer.R;
 import com.example.wkj_pc.rushtoanswer.receiver.MyReceiver;
 import com.example.wkj_pc.rushtoanswer.service.OrderService;
+import com.example.wkj_pc.rushtoanswer.service.SensorImp;
 import com.example.wkj_pc.rushtoanswer.utils.GsonUtils;
 import com.example.wkj_pc.rushtoanswer.utils.NetWorkUtils;
 
@@ -48,7 +49,6 @@ public class SplashActivity extends AppCompatActivity {
                 Intent intent=new Intent(SplashActivity.this,JoinActivity.class);
                 intent.putExtra("key","Sorry, you participate in the activities has ended");
                 startActivity(intent);
-
             }
         });
         /*

@@ -12,6 +12,16 @@ public class OrderMessage {
     private byte[] imageAvatar; //参与者头像
     private int intention;       //意图
     private String tag;         //活动名
+    private String rushMethod;  //抢答方法
+
+    public String getRushMethod() {
+        return rushMethod;
+    }
+
+    public void setRushMethod(String rushMethod) {
+        this.rushMethod = rushMethod;
+    }
+
     public String getTag() {
         return tag;
     }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="team">
+    <item>team</item>
+    <item>team</item>
+</string-array>
+<string-array name="rush_method">
+        <item>点击</item>
+        <item>摇一摇</item>
+</string-array>
+</resources>

@@ -12,12 +12,32 @@
         android:layout_weight="1"
         android:id="@+id/order_listview"
         ></ListView>
-    <Button
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/start_rush_btn"
-        android:textSize="24sp"
-        android:text="开始抢答"
-        android:background="#4bca24"
-        />
+        android:orientation="horizontal"
+        >
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/random_quiz_btn"
+            android:textSize="24sp"
+            android:text="随机提问"
+            android:layout_marginLeft="5dp"
+            android:background="#4bca24"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/start_rush_btn"
+            android:textSize="24sp"
+            android:text="开始抢答"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="#4bca24"
+            />
+    </LinearLayout>
+
 </LinearLayout>
