@@ -42,6 +42,7 @@ public class MyReceiver extends BroadcastReceiver {
             if (Build.VERSION.SDK_INT>=23){
                 if (!Settings.canDrawOverlays(context)){
                     Intent intent1=new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+
                     //JoinRushActivity.instance.startActivityForResult(intent1,1);
                     return;
                 }else{
